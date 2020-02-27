@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://Tal123:Tal123@merncluster-aukm0.mongodb.net/test?retryWrites=true&w=majority",
+  "Monogo": "mongodb+srv://Tal123:Tal123@merncluster-aukm0.mongodb.net/test?retryWrites=true&w=majority"
+}
