@@ -10,9 +10,9 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     });
-    console.log("MongoDB connected");
+    console.log("MongoDB connected...");
   } catch (err) {
     console.log("MongoDB falid to connect.");
     console.log("====================================");
