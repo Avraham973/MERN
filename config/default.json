@@ -1,7 +1,7 @@
 {
   "mongoURI": "mongodb+srv://Tal123:Tal123@merncluster-aukm0.mongodb.net/test?retryWrites=true&w=majority",
   "Monogo": "mongodb+srv://Tal123:Tal123@merncluster-aukm0.mongodb.net/test?retryWrites=true&w=majority",
-  "jwrToken": "mysecrettoken",
+  "jwtSecret": "mysecrettoken",
   "githubClientId": "27fb28811a3b758afe5b",
   "githubSecret": "e94d5d692e46c3b998975a48289951b37976b358"
 }

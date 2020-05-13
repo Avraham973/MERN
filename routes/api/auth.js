@@ -30,7 +30,7 @@ router.post(
   "/",
   [
     check("email", "Please include a valid email").isEmail(),
-    check("password", "Password is reqired").exists()
+    check("password", "Password is reqired").exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -62,12 +62,12 @@ router.post(
       //Sending back the JSON -ksonwebtoken
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
       jwt.sign(
         payload,
-        config.get("jwrToken"),
+        config.get("jwtSecret"),
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;

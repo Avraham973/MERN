@@ -15,18 +15,17 @@ const jwt = require("jsonwebtoken");
 router.post(
   "/",
   [
-    check("name", "The name field is required")
-      .not()
-      .notEmpty(),
+    check("name", "The name field is required").not().notEmpty(),
     check("email", "Please include a valid email").isEmail(),
     check(
       "password",
       "Please enter a password with a minimum of 6 chars"
-    ).isLength({ min: 6 })
+    ).isLength({ min: 6 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log(errors.array());
       return res.status(400).json({ errors: errors.array() });
     }
     console.log(req.body); //The obj data sent to this route
@@ -45,14 +44,14 @@ router.post(
       const avatar = gravatar.url(email, {
         s: "200",
         r: "pg",
-        d: "mm"
+        d: "mm",
       });
 
       user = new User({
         name,
         email,
         avatar,
-        password
+        password,
       });
 
       //Encrypt password
@@ -62,12 +61,12 @@ router.post(
       //Sending back the JSON -ksonwebtoken
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
       jwt.sign(
         payload,
-        config.get("jwrToken"),
+        config.get("jwtSecret"),
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
