@@ -7,14 +7,21 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "nodemon",
-      "runtimeExecutable": "nodemon",
-      "program": "${workspaceFolder}/server.js",
-      "restart": true,
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "skipFiles": ["<node_internals>/**"]
+      "name": "Launch Program",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}\\routes\\api\\auth.js"
     },
+    // {
+    //   "type": "node",
+    //   "request": "launch",
+    //   "name": "nodemon",
+    //   "runtimeExecutable": "nodemon",
+    //   "program": "${workspaceFolder}/server.js",
+    //   "restart": true,
+    //   "console": "integratedTerminal",
+    //   "internalConsoleOptions": "neverOpen",
+    //   "skipFiles": ["<node_internals>/**"]
+    // },
     {
       "type": "chrome",
       "request": "launch",

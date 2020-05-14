@@ -31,6 +31,7 @@ router.post(
     console.log(req.body); //The obj data sent to this route
 
     const { name, email, password } = req.body;
+    email = email.toLowerCase();
     try {
       //Check if the user exists
       let user = await User.findOne({ email });
