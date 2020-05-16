@@ -6,6 +6,7 @@ import Navbar from "./Components/Layout/Navbar";
 import Landing from "./Components/Layout/Landing";
 import Alert from "./Components/Layout/Alert";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import ProfileForm from "./Components/Profile-Form/ProfileForm";
 import Register from "./Components/Auth/Register";
 import PrivateRoute from "./Components/Routing/PrivateRoute";
 import Login from "./Components/Auth/Login";
@@ -18,7 +19,6 @@ import store from "./store";
 import "./App.css";
 
 if (localStorage.token) {
-  console.log("app.js");
   setAuthToken(localStorage.token);
 }
 
@@ -42,6 +42,11 @@ const App = () => {
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute
+                exact
+                path='/create-profile'
+                component={ProfileForm}
+              />
             </Switch>
           </section>
         </Fragment>
