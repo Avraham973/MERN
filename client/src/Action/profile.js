@@ -24,25 +24,27 @@ export const getCurrentProfile = () => async (dispatch) => {
 export const CreateProfile = (formData, history, edit = false) => async (
   dispatch
 ) => {
-  const config = {
-    header: {
-      "Content-Type": "application/json",
-    },
-  };
   try {
-    const res = await axios.post("/api/profile/", formData, config);
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.post("/api/profile", formData, config);
 
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
     });
 
-    dispatch(setAlert(edit ? "Profile Updated" : "Profile Created"));
+    dispatch(setAlert(edit ? "Profile Updated" : "Profile Created", "success"));
 
     if (!edit) {
       history.push("/dashboard");
     }
   } catch (error) {
+    console.log(error);
     const errors = error.response.data.errors;
 
     if (errors) {

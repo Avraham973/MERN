@@ -21,7 +21,7 @@ const initialState = {
   instagram: "",
 };
 
-const ProfileForm = ({
+const EditProfile = ({
   profile: { profile, loading },
   CreateProfile,
   getCurrentProfile,
@@ -30,6 +30,20 @@ const ProfileForm = ({
   const [formData, setFormData] = useState(initialState);
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
+
+  useEffect(() => {
+    if (!profile) getCurrentProfile();
+    if (!loading && profile) {
+      const profileData = { ...initialState };
+      for (const key in profile) {
+        if (key in profileData) profileData[key] = profile[key];
+      }
+      for (const key in profile.social) {
+        if (key in profileData) profileData[key] = profile.social[key];
+      }
+      setFormData(profileData);
+    }
+  }, [loading, profile]);
 
   const {
     company,
@@ -46,9 +60,10 @@ const ProfileForm = ({
     instagram,
   } = formData;
 
-  const onChange = (e) =>
+  const onChange = (e) => {
+    console.log([e.target.name], e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     CreateProfile(formData, history, true);
@@ -84,7 +99,7 @@ const ProfileForm = ({
             placeholder='Company'
             name='company'
             value={company}
-            onChange={onChange}
+            onChange={(e) => onChange(e)}
           />
           <small className='form-text'>
             Could be your own company or one you work for
@@ -227,7 +242,7 @@ const ProfileForm = ({
   );
 };
 
-ProfileForm.propTypes = {
+EditProfile.propTypes = {
   CreateProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
@@ -238,5 +253,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { CreateProfile, getCurrentProfile })(
-  withRouter(ProfileForm)
+  withRouter(EditProfile)
 );
